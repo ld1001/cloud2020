@@ -3,6 +3,7 @@ package com.atguigu.springcloud.controller;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 @RequestMapping("/consumer/payment")
+@EnableEurekaClient
 public class OrderConotroller {
 
     /**
