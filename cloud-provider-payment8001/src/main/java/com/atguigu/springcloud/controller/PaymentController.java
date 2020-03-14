@@ -5,10 +5,13 @@ import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Description: 支付控制类
@@ -24,6 +27,9 @@ public class PaymentController {
 
     @Resource
     private PaymentService paymentService;
+
+    @Resource
+    private EurekaDiscoveryClient discoveryClient;
 
     @Value("${server.port}")
     private String serverPost;
@@ -48,6 +54,22 @@ public class PaymentController {
         } else {
             return new CommonResult(200, "查询失败", null);
         }
+    }
+
+    /**
+     * 查询服务信息
+     */
+    @GetMapping("/discovery")
+    public EurekaDiscoveryClient discovery() {
+        List<String> services = discoveryClient.getServices();
+        for (String service : services) {
+            log.info("service:" + "\t" + service);
+        }
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        for (ServiceInstance instance : instances) {
+            log.info(instance.getServiceId() + "/t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
+        }
+        return this.discoveryClient;
     }
 
 }
