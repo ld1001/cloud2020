@@ -11,8 +11,8 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
  * @Date: 2020-03-13
  * @Version: V1.0
  */
- @SpringBootApplication
- @RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
+@SpringBootApplication
+// @RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
 public class OrderMain80 {
 
     public static void main(String[] args) {

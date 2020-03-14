@@ -1,6 +1,5 @@
 package com.atguigu.springcloud.config;
 
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -15,8 +14,8 @@ import org.springframework.web.client.RestTemplate;
 public class SpringConfig {
 
     @Bean
-    // 发送请求表示开负载均衡
-    @LoadBalanced
+    // 开启负载均衡，使用ribbon自定义负载均衡算法时就开启，如果使用LoadBalance负载均衡器就关闭
+    // @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
