@@ -24,7 +24,9 @@ public class OrderConotroller {
     /**
      * 调用payment服务的url
      */
-    public static final String PAYMENT_URL = "http://localhost:8001";
+//    public static final String PAYMENT_URL = "http://localhost:8001";
+    // 微服务是以服务名进行交互的
+    public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;
