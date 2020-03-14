@@ -4,6 +4,7 @@ import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -41,5 +42,15 @@ public class OrderConotroller {
     @GetMapping("/get/{id}")
     public CommonResult<Payment> get(@PathVariable Long id) {
         return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
+    }
+
+    @GetMapping("/getForEntity/{id}")
+    public CommonResult<Payment> getForEntity(@PathVariable Long id) {
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
+        if (entity != null) {
+            return entity.getBody();
+        } else {
+            return new CommonResult<>(444, "查询失败");
+        }
     }
 }

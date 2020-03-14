@@ -1,7 +1,9 @@
 package com.atguigu.springcloud;
 
+import com.atguigu.myrule.MySelfRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 /**
  * @Description: Order启动类
@@ -10,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version: V1.0
  */
  @SpringBootApplication
+ @RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)
 public class OrderMain80 {
 
     public static void main(String[] args) {
