@@ -8,6 +8,11 @@ eureka:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka
 
+# feign是集成了hystrix的，通过设置打开对Hystrix的支持
+feign:
+  hystrix:
+    enabled: true
+
 # 下面的代码设置超时调用
 #feign:
 #  httpclient:
