@@ -8,3 +8,17 @@ eureka:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka
 
+# 下面的代码设置超时调用
+#feign:
+#  httpclient:
+#    enabled: true
+#    connection-timeout: 60000
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 60000
+#        readTimeout: 60000
+#        loggerLevel: FULL
+#ribbon:
+#  ConnectTimeout: 60000
+#  ReadTimeout: 60000
